@@ -8,9 +8,7 @@ This data is provided by the U.S. Census Bureau and the FBI, and is decribed <a 
 
 <h2>Visualization Process</h2>
 <h5>Plot a map of the U.S.</h5>
-
 ![Alt text](./figures/0_basic_map.png)
-
     > library(ggplot2)  # for map_data() function
     > statesMap <- map_data('state')
     > head(statesMap)
@@ -78,25 +76,19 @@ This data is provided by the U.S. Census Bureau and the FBI, and is decribed <a 
     > data <- subset(data, select = - State)
 
 <h5>Plot a map of murders</h5>
-
 ![Alt text](./figures/1_map_of_murders.png)
-
     > ggplot(data, aes(x = long, y = lat, group = group, fill = Murders)) + 
     +   geom_polygon(color = 'black') +
     +   scale_fill_gradient(low = 'white', high = 'red', guide = 'legend')
 
 <h5>Plot a map of population</h5>
-
 ![Alt text](./figures/2_map_of_population.png)
-
     > ggplot(data, aes(x = long, y = lat, group = group, fill = Population)) +
     +   geom_polygon(color = 'black') + 
     +   scale_fill_gradient(low = 'white', high = 'red', guide = 'legend')
 
 <h5>Plot a map of murder rates</h5>
-
 ![Alt text](./figures/3_map_of_murder_rates.png)
-
     > data$MurderRate <- data$Murders / data$Population * 100000  # number of murders per 100000 residents
     > ggplot(data, aes(x = long, y = lat, group = group, fill = MurderRate)) +
     +   geom_polygon(color = 'black') +
@@ -126,9 +118,7 @@ This data is provided by the U.S. Census Bureau and the FBI, and is decribed <a 
     [1] "New Hampshire"
 
 <h5>Plot a map or murder rates excluding D.C. (outlier)</h5>
-
 ![Alt text](./figures/4_map_of_murder_rates_without_DC.png)
-
     > ggplot(subset(data, region != 'district of columbia'), 
     +        aes(x = long, y = lat, group = group, fill = MurderRate)) +
     +   geom_polygon(color = 'black') +
@@ -136,9 +126,7 @@ This data is provided by the U.S. Census Bureau and the FBI, and is decribed <a 
     +   coord_map('mercator')
 
 <h5>Final map of murder rates</h5>
-
 ![Alt text](./figures/5_map_of_murder_rates_final.png)
-
     > ggplot(subset(data, region != 'district of columbia'), 
     +        aes(x = long, y = lat, group = group, fill = MurderRate)) +
     +   geom_polygon(color = 'black') +
@@ -150,9 +138,7 @@ This data is provided by the U.S. Census Bureau and the FBI, and is decribed <a 
     +   coord_map('mercator')
 
 <h5>Plot a map of gun ownership</h5>
-
 ![Alt text](./figures/6_map_of_gun_ownership_final.png)
-
     > ggplot(data, aes(x = long, y = lat, group = group, fill = GunOwnership)) + 
     +   geom_polygon(color = 'black') + 
     +   scale_fill_gradient(low = 'white', high = 'orange', guide = 'legend') +
